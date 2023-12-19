@@ -24,6 +24,14 @@ END;
 
 CREATE PROCEDURE spu_resumen_alienacion()
 BEGIN
+  SELECT
+  ALI.alignment as 'alienamiento',
+  COUNT(ALI.alignment) as 'total'
+  FROM superhero SUP
+  LEFT JOIN alignment ALI ON ALI.id = SUP.alignment_id
+  GROUP BY ALI.alignment
+  ORDER BY total;
+END;
 
 CALL spu_listar_productores();
 CALL spu_tabla_publicacion_superheroes(1)
