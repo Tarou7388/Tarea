@@ -60,10 +60,9 @@
 
             tbody.appendChild(tr);
           })
-            .catch(e => {
-              console.error(e)
-            })
-
+        })
+        .catch(e => {
+          console.error(e)
         })
     })();
   </script>

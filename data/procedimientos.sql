@@ -1,6 +1,6 @@
 USE superhero;
 
-DROP PROCEDURE spu_resumen_alienacion_productor;
+
 
 CREATE PROCEDURE SPU_TABLA_PUBLICACION_SUPERHEROES(
 IN _IDPUBLISHER INT) BEGIN SELECT 
@@ -34,17 +34,17 @@ CREATE PROCEDURE SPU_RESUMEN_ALIENACION() BEGIN SELECT
 	ORDER BY total;
 	END;
 
+DROP PROCEDURE spu_resumen_alienacion_productor;
 
-CREATE PROCEDURE spu_resumen_alienacion_productor(IN PUBLISHER_ID INT) 
+CREATE PROCEDURE spu_resumen_alienacion_productor(IN PUBLISHER_ID VARCHAR(5)) 
 BEGIN
   SELECT
 	    ALG.alignment AS Alienacion,
-	    COUNT(SUP.id) AS Heroes
+	    COUNT(ALG.alignment) AS Heroes
 	FROM superhero SUP
-	    LEFT JOIN alignment ALG ON Alg.id = SUP.alignment_id
-	WHERE publisher_id = PUBLISHER_ID
+	    LEFT JOIN alignment ALG ON ALG.id = SUP.alignment_id
+	WHERE SUP.publisher_id = PUBLISHER_ID
 	GROUP BY
-	    ALG.id,
 	    ALG.alignment;
 	END;
 

@@ -11,8 +11,8 @@ if (isset($_GET['operacion'])) {
     $resultado = $Productores->searchAll(["idpublisher" => $_GET['idpublisher']]);
     echo json_encode($resultado);
   }
-  if($_GET['operacion']== 'searchListarAlienacion'){
-    $resultado = $Productores->searchListarAlienacion(["id_publisher" => $_GET['id_publisher']]);
+  if($_GET['operacion'] == 'searchListarAlienacion'){
+    $resultado = $Productores->searchListarAlienacion(["idpublisher" => $_GET['idpublisher']]);
     echo json_encode($resultado);
   }
 }

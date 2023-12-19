@@ -36,7 +36,7 @@ class Productores extends Conexion{
     try{
       $consulta = $this->pdo->prepare("CALL spu_resumen_alienacion_productor(?)");
       $consulta->execute(
-        array($data['id_publisher'])
+        array($data['idpublisher'])
       );
       return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
