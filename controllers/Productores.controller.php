@@ -15,5 +15,9 @@ if (isset($_GET['operacion'])) {
     $resultado = $Productores->searchListarAlienacion(["idpublisher" => $_GET['idpublisher']]);
     echo json_encode($resultado);
   }
+  if($_GET['operacion'] == 'searchListarCantidad'){
+    $resultado = $Productores->searchListarCantidad(["idpublisher" => $_GET['idpublisher']]);
+    echo json_encode($resultado);
+  }
 }
 ?>

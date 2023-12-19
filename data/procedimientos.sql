@@ -34,13 +34,13 @@ CREATE PROCEDURE SPU_RESUMEN_ALIENACION() BEGIN SELECT
 	ORDER BY total;
 	END;
 
-DROP PROCEDURE spu_resumen_alienacion_productor;
+DROP PROCEDURE spu_Publisher_lista_heroes;
 
-CREATE PROCEDURE spu_resumen_alienacion_productor(IN PUBLISHER_ID VARCHAR(5)) 
+CREATE PROCEDURE spu_resumen_alienacion_productor(IN PUBLISHER_ID INT) 
 BEGIN
   SELECT
 	    ALG.alignment AS Alienacion,
-	    COUNT(ALG.alignment) AS Heroes
+	    COUNT(*) AS Heroes
 	FROM superhero SUP
 	    LEFT JOIN alignment ALG ON ALG.id = SUP.alignment_id
 	WHERE SUP.publisher_id = PUBLISHER_ID
@@ -48,6 +48,20 @@ BEGIN
 	    ALG.alignment;
 	END;
 
+CREATE PROCEDURE spu_Publisher_lista_heroes(IN publisher_id INT)
+BEGIN
+	SELECT 
+	PUB.publisher_name AS Casa,
+	COUNT(SUP.id) AS heroes
+	FROM superhero SUP
+	INNER JOIN publisher  Pub
+	ON SUP.publisher_id = PUB.id
+	WHERE SUP.Publisher_id = publisher_id
+	GROUP BY
+        PUB.publisher_name ;
+END;
+
+CALL spu_Publisher_lista_heroes(4);
 
 CALL spu_resumen_alienacion;
 

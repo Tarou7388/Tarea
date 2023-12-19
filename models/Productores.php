@@ -44,8 +44,20 @@ class Productores extends Conexion{
       die($e->getMessage());
     }
   }
+  public function searchListarCantidad($data=[]){
+    try{
+      $consulta = $this->pdo->prepare("CALL spu_Publisher_lista_heroes(?)");
+      $consulta->execute(
+        array($data['idpublisher'])
+      );
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
 }
 
 /* $Productores = new Productores();
-$registro = $Productores->searchListarAlienacion(["idpublisher" => 4]);
+$registro = $Productores->searchListarCantidad(["idpublisher" => 3]);
 echo json_encode($registro); */
