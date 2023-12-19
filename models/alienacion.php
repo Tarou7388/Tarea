@@ -10,12 +10,10 @@ class Alienacion extends Conexion{
   public function __CONSTRUCT(){
     $this->pdo = parent::getConexion();
   }
-  public function searchAll($data=[]){
+  public function search(){
     try{
-      $consulta = $this->pdo->prepare("CALL spu_tabla_publicacion_superheroes(?)");
-      $consulta->execute(
-        array($data['idpublisher'])
-      );
+      $consulta = $this->pdo->prepare("CALL spu_resumen_alienacion()");
+      $consulta->execute();
       return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
     catch(Exception $e){

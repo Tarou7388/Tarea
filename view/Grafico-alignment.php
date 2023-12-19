@@ -15,7 +15,7 @@
   <script>
     const contexto = document.querySelector("#lienzo")
     const grafico = new Chart(contexto, {
-      type: 'radar',
+      type: 'bar',
       data: {
         labels: [],
         datasets: [{
@@ -24,6 +24,19 @@
         }]
       }
     });
+    (function (){
+      fetch(`../controllers/alienacion.controller.php?operacion=search`)
+      .then(respuesta => respuesta.json())
+      .then(datos => {
+        
+        grafico.data.labels = datos.map(registro => registro.alienamiento)
+        grafico.data.datasets[0].data = datos.map(registro=>registro.total)
+        grafico.update()
+      })
+      .catch(e => {
+        console.error(e)
+      })
+    })();
   </script>
 </body>
 
