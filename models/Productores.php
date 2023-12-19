@@ -32,8 +32,20 @@ class Productores extends Conexion{
       die($e->getMessage());
     }
   }
+  public function searchListarAlienacion($data=[]){
+    try{
+      $consulta = $this->pdo->prepare("CALL spu_resumen_alienacion_productor(?)");
+      $consulta->execute(
+        array($data['id_publisher'])
+      );
+      return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
 }
 
 /* $Productores = new Productores();
-$registro = $Productores->searchAll(["idpublisher" => 4]);
+$registro = $Productores->searchListarAlienacion(["idpublisher" => 4]);
 echo json_encode($registro); */
