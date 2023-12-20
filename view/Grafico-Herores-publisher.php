@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <div class="container mt-5">
         <form>
             <label for="id" class="form-label">Seleccionar Casa:</label>
@@ -67,7 +68,7 @@
 
                 const idselect = $('#id');
                 const selectValue = idselect.value;
-                
+
                 fetch(`../controllers/Productores.controller.php?operacion=searchListarCantidad&idpublisher=${selectValue}`)
                     .then(respuesta => respuesta.json())
                     .then(datos => {
@@ -80,8 +81,15 @@
                     .catch(e => {
                         console.error(e)
                     });
-            })
+            });
+            $("#eliminar").addEventListener('click', function(event) {
+                event.preventDefault();
+                grafico.data.labels.pop();
+                grafico.data.datasets[0].data.pop();
+                grafico.update();
+            });
         })
+        //
     </script>
 </body>
 
