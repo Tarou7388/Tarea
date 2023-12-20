@@ -30,6 +30,7 @@
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="config-chart.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             function $(id) {
@@ -42,7 +43,10 @@
                     labels: [],
                     datasets: [{
                         label: "",
-                        data: []
+                        data: [],
+                        backgroundColor: bgColorChart,
+                        borderColor: bdColorChart,
+                        borderWidth: 2
                     }]
                 }
             });
